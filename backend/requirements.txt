@@ -1,0 +1,41 @@
+# API framework
+fastapi
+uvicorn[standard]
+python-multipart
+
+# AI / LLM
+langchain
+langchain-groq
+langchain-core
+langchain-community
+langgraph
+
+langchain-huggingface
+langchain-chroma
+
+# Embeddings
+sentence-transformers
+
+# Vector stores
+chromadb
+faiss-cpu
+
+# Document loaders
+pypdf
+python-docx
+pandas
+
+# Database
+supabase
+
+# Monitoring
+prometheus-client
+
+# Utilities
+python-dotenv
+pydantic
+httpx
+
+# Tests
+pytest
+pytest-asyncio
