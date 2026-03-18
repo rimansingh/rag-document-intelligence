@@ -44,3 +44,6 @@ uploads/
 
 # Grafana runtime data
 grafana_data/
+
+# Virtual Environment
+.venv_RAG_Document
