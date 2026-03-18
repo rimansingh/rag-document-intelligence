@@ -1,0 +1,46 @@
+# Environment — NEVER commit real keys
+.env
+*.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ChromaDB / FAISS — vector data, too large for git
+chroma_db/
+*.chroma
+faiss_db/
+
+# Terraform — state files contain sensitive data
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/.terraform.lock.hcl
+terraform/terraform.tfvars
+
+# Docker
+.dockerignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Uploads (user documents, not for git)
+uploads/
+
+# Grafana runtime data
+grafana_data/
