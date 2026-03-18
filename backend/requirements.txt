@@ -13,12 +13,15 @@ langgraph
 langchain-huggingface
 langchain-chroma
 
+
 # Embeddings
 sentence-transformers
 
 # Vector stores
 chromadb
 faiss-cpu
+langchain-chroma
+langchain-huggingface
 
 # Document loaders
 pypdf

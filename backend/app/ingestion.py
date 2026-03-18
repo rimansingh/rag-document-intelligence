@@ -2,7 +2,7 @@ import os
 import uuid
 import logging
 import tempfile
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import (
     PyPDFLoader,
     Docx2txtLoader,
@@ -105,7 +105,6 @@ def ingest_document(file_bytes: bytes, filename: str) -> dict:
     # 3: Store in ChromaDB
     vectorstore = get_vectorstore()
     vectorstore.add_documents(chunks)
-    vectorstore.persist()
     logger.info(f"Stored {len(chunks)} chunks in ChromaDB")
 
     # 4: Save metadata to Supabase

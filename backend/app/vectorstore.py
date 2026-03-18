@@ -63,5 +63,6 @@ def is_vectorstore_ready() -> bool:
     try:
         vs = get_vectorstore()
         return vs._collection.count() > 0
-    except Exception:
+    except Exception as e:
+        logger.warning(f"Vectorstore not ready: {e}")
         return False
