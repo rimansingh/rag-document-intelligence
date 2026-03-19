@@ -44,6 +44,7 @@ uploads/
 
 # Grafana runtime data
 grafana_data/
+monitoring/prometheus_data/
 
 # Virtual Environment
 .venv_RAG_Document

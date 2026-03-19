@@ -192,3 +192,16 @@ async def chat(request: ChatRequest):
         REQUEST_COUNT.labels(endpoint="chat", status="error").inc()
         logger.error(f"Chat failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.delete("/documents/clear")
+async def clear_documents():
+    """Clears all documents from the vector store."""
+    import shutil
+    chroma_path = os.getenv("CHROMA_PATH", "./chroma_db")
+    try:
+        if os.path.exists(chroma_path):
+            shutil.rmtree(chroma_path)
+        reset_vectorstore()
+        return {"message": "Vector store cleared successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

@@ -110,6 +110,11 @@ resource "docker_container" "prometheus" {
     read_only      = true
   }
 
+  volumes {
+    container_path = "/prometheus"
+    host_path      = abspath("${path.module}/../monitoring/prometheus_data")
+  }
+
   restart    = "unless-stopped"
   depends_on = [docker_container.backend]
 }
