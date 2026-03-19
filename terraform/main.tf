@@ -104,6 +104,12 @@ resource "docker_container" "prometheus" {
     read_only      = true
   }
 
+  volumes {
+    container_path = "/etc/prometheus/alerts.yml"
+    host_path      = abspath("${path.module}/../monitoring/alerts.yml")
+    read_only      = true
+  }
+
   restart    = "unless-stopped"
   depends_on = [docker_container.backend]
 }
