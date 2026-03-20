@@ -19,30 +19,29 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Configure Git
+      - name: Configure Git identity
         run: |
-          git config user.email "ci@github.com"
-          git config user.name "GitHub Actions"
+          git config --global user.email "ci@github.com"
+          git config --global user.name "GitHub Actions"
 
       - name: Push frontend to HuggingFace Space
         env:
           HF_TOKEN:    ${{ secrets.HF_TOKEN }}
           HF_USERNAME: ${{ secrets.HF_USERNAME }}
         run: |
-          # Clone the HF Space
-          git clone https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/rag-frontend hf-frontend
+          git clone https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/spaces/${HF_USERNAME}/rag-frontend hf-frontend
 
-          # Copy frontend files
           cp frontend/app.py           hf-frontend/app.py
           cp frontend/requirements.txt hf-frontend/requirements.txt
 
-          # Commit and push
           cd hf-frontend
           git add .
           git diff --staged --quiet || git commit -m "deploy: ${{ github.sha }}"
           git push
 
       - name: Confirm deployment
+        env:
+          HF_USERNAME: ${{ secrets.HF_USERNAME }}
         run: |
-          echo "Frontend deployed — Space rebuilding at:"
-          echo "https://huggingface.co/spaces/${{ secrets.HF_USERNAME }}/rag-frontend"
+          echo "Frontend deployed at:"
+          echo "https://huggingface.co/spaces/${HF_USERNAME}/rag-frontend"
