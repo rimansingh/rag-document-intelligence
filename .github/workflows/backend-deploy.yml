@@ -108,7 +108,6 @@ jobs:
           HF_TOKEN:    ${{ secrets.HF_TOKEN }}
           HF_USERNAME: ${{ secrets.HF_USERNAME }}
         run: |
-          # Clone the HF Space
           git clone https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/rag-backend hf-backend
 
           # Copy backend files into it
