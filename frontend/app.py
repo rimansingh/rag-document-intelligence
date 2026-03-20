@@ -389,6 +389,8 @@ if question:
 
                 elif response.status_code == 400:
                     st.warning(response.json().get("detail"))
+                elif response.status_code == 429:
+                    st.warning("Rate limit reached on the LLM API. Please wait 10-15 seconds and try again.")
                 else:
                     st.error(f"Error {response.status_code}")
 

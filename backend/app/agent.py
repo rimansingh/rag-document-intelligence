@@ -6,6 +6,7 @@ from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.documents import Document
 from app.retrieval import retrieve
+import time
 
 logger = logging.getLogger(__name__)
 
@@ -130,10 +131,6 @@ def build_rag_graph():
 _graph = None
 
 def run_rag(question: str, retrieval_method: str = "hybrid") -> dict:
-    """
-    Main entry point. Runs the full RAG pipeline and returns
-    answer, sources, and method used.
-    """
     global _graph
     if _graph is None:
         _graph = build_rag_graph()
@@ -147,7 +144,16 @@ def run_rag(question: str, retrieval_method: str = "hybrid") -> dict:
         "sources":          [],
     }
 
-    result = _graph.invoke(initial_state)
+    # Retry once on rate limit
+    try:
+        result = _graph.invoke(initial_state)
+    except Exception as e:
+        if "429" in str(e) or "rate_limit" in str(e).lower():
+            logger.warning("Groq rate limit hit, waiting 10s before retry")
+            time.sleep(10)
+            result = _graph.invoke(initial_state)
+        else:
+            raise
 
     return {
         "answer":           result["answer"],
