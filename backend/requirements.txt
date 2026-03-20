@@ -42,3 +42,9 @@ httpx
 # Tests
 pytest
 pytest-asyncio
+
+
+# Security: pin safe versions to pass Trivy scan
+setuptools>=79.0.0
+wheel>=0.46.2
+pip>=24.0
