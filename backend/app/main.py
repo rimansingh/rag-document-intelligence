@@ -3,6 +3,8 @@ import uuid
 import time
 import logging
 import json
+import asyncio
+import httpx
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
@@ -60,11 +62,34 @@ DOCS_INGESTED = Counter(
 )
 
 
+# ── Keep-alive background task ────────────────────────────────────────────
+async def keep_alive():
+    """
+    Pings /health every 10 minutes to prevent Hugging Face Space from sleeping.
+    The Space URL is read from HF_SPACE_URL env var; falls back to localhost.
+    """
+    url = os.getenv("HF_SPACE_URL", "http://localhost:7860")
+    ping_url = f"{url.rstrip('/')}/health"
+    interval = int(os.getenv("KEEP_ALIVE_INTERVAL", 600))  # seconds, default 10 min
+
+    await asyncio.sleep(30)  # wait for app to fully start
+    while True:
+        try:
+            async with httpx.AsyncClient(timeout=10) as client:
+                r = await client.get(ping_url)
+            logger.info(f"Keep-alive ping → {ping_url} [{r.status_code}]")
+        except Exception as e:
+            logger.warning(f"Keep-alive ping failed: {e}")
+        await asyncio.sleep(interval)
+
+
 # ── App lifecycle ─────────────────────────────────────────────────────────
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("RAG Document Intelligence starting up")
+    task = asyncio.create_task(keep_alive())
     yield
+    task.cancel()
     logger.info("RAG Document Intelligence shutting down")
 
 

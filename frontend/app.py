@@ -2,10 +2,14 @@ import streamlit as st
 import requests
 import os
 from dotenv import load_dotenv
+from streamlit_autorefresh import st_autorefresh
 
 load_dotenv()
 
 BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
+
+# ── Keep the HF Space awake: refresh every 10 minutes ────────────────────
+st_autorefresh(interval=10 * 60 * 1000, key="keep_alive_refresh")
 
 st.set_page_config(
     page_title="RAG Document Intelligence",

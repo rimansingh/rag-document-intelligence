@@ -37,7 +37,7 @@ prometheus-client
 # Utilities
 python-dotenv
 pydantic
-httpx
+httpx[asyncio]
 
 # Tests
 pytest
