@@ -5,7 +5,6 @@
 [![CI/CD](https://img.shields.io/github/actions/workflow/status/rimansingh/rag-document-intelligence/backend-deploy.yml?label=CI%2FCD&style=flat-square)](https://github.com/rimansingh/rag-document-intelligence/actions)
 [![Tests](https://img.shields.io/badge/Tests-37%20passing-brightgreen?style=flat-square)](#testing)
 [![Python](https://img.shields.io/badge/Python-3.11-blue?style=flat-square)](https://python.org)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
 **🚀 [Live Demo → rimandeep-rag-frontend.hf.space](https://rimandeep-rag-frontend.hf.space)**
 
@@ -69,7 +68,7 @@ Local (Terraform manages):
 | IaC | Terraform (docker provider) | Infrastructure as code, full lifecycle |
 | CI/CD | GitHub Actions | Automated test → scan → deploy |
 | Monitoring | Prometheus + Grafana | Metrics, SLO alerting, dashboards |
-| Keepalive | cron-job.org | Pings /health to prevent cold starts |
+| Keep-alive | Async self-ping + st_autorefresh | Prevents HF Space sleep on free tier |
 
 ---
 
@@ -79,7 +78,7 @@ Local (Terraform manages):
 rag-document-intelligence/
 ├── backend/
 │   ├── app/
-│   │   ├── main.py          # FastAPI — routes, logging, Prometheus metrics
+│   │   ├── main.py          # FastAPI — routes, logging, Prometheus metrics, keep-alive
 │   │   ├── agent.py         # LangGraph state machine (retrieve→context→generate)
 │   │   ├── retrieval.py     # Semantic, HyDE, Hybrid retrieval strategies
 │   │   ├── ingestion.py     # Multi-format loader + recursive chunking
@@ -300,6 +299,8 @@ Resources managed:
 | `SUPABASE_URL` | Supabase project URL | Supabase dashboard |
 | `SUPABASE_KEY` | Supabase anon key | Supabase dashboard |
 | `BACKEND_URL` | URL the frontend calls | Your HF Docker Space URL |
+| `HF_SPACE_URL` | Backend Space URL for keep-alive self-ping | `https://rimandeep-rag-backend.hf.space` |
+| `KEEP_ALIVE_INTERVAL` | Ping interval in seconds | Default: `600` (10 min) |
 | `ENVIRONMENT` | `development` or `production` | Set manually |
 | `CHROMA_PATH` | ChromaDB persistence directory | Default: `./chroma_db` |
 
@@ -309,7 +310,6 @@ Never commit `.env` — use GitHub Actions secrets for CI/CD and HuggingFace Spa
 
 ## Roadmap
 
-- [ ] Add unit tests for agent.py nodes
 - [ ] Multi-document support with per-document filtering
 - [ ] Conversation memory across sessions
 - [ ] Support for web URL ingestion
