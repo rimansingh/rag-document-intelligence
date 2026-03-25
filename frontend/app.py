@@ -20,13 +20,15 @@ st_autorefresh(interval=10 * 60 * 1000, key="keep_alive_refresh")
 
 st.markdown("""
 <style>
+  /* ── Google Fonts ── */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
   /* ── Hide Streamlit chrome ── */
   div[data-testid="stToolbar"],
   div[data-testid="stDecoration"],
   div[data-testid="stStatusWidget"],
   #MainMenu, footer { display: none !important; }
 
-  /* ── Collapse the header bar height so it doesn't push content down ── */
   header[data-testid="stHeader"] {
     height: 0 !important;
     min-height: 0 !important;
@@ -34,136 +36,218 @@ st.markdown("""
     overflow: hidden !important;
   }
 
-  /* ── Global background ── */
+  /* ── Global Styles (Modern Soft UI) ── */
   .stApp {
-    background-color: #f8f9fb;
+    background: #f8fafc; /* Soft Slate */
+    font-family: 'Inter', sans-serif;
+    color: #1e293b;
   }
 
-  /* ── Layout ── */
-  div[data-testid="stAppViewContainer"] > section.main > div.block-container {
-    padding-top: 0.75rem !important;
-    padding-left: 2.5rem !important;
-    padding-right: 2.5rem !important;
+  [data-testid="stAppViewContainer"] > section.main > div.block-container {
+    padding-top: 0 !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
     max-width: 100% !important;
+    margin: 0 !important;
+    background: #ffffff; /* Floating Content Card */
+    border-radius: 0 0 24px 24px;
+    margin-top: 0 !important;
+    margin-bottom: 2rem;
+    box-shadow: 
+      0 10px 15px -3px rgba(0, 0, 0, 0.04),
+      0 4px 6px -4px rgba(0, 0, 0, 0.02),
+      0 20px 25px -5px rgba(0, 0, 0, 0.03); /* Multi-layered soft shadow */
+    border: 1px solid rgba(226, 232, 240, 0.8);
   }
 
-  /* ── Sidebar ── */
+  /* ── Sidebar (Glassmorphism Lite) ── */
   section[data-testid="stSidebar"] {
-    background-color: #ffffff;
-    border-right: 1px solid #e5e7eb;
+    background-color: #f0f4ff !important; /* Soft Indigo */
+    border-right: 1px solid #e2e8f0;
   }
+  
+  section[data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
+    padding-top: 0 !important;
+  }
+  
   section[data-testid="stSidebar"] .stMarkdown h3 {
-    color: #4f46e5;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.07em;
+    color: #4338ca;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-bottom: 0.3rem;
-  }
-  section[data-testid="stSidebar"] hr {
-    border-color: #f0f0f5;
-    margin: 0.75rem 0;
+    margin-bottom: 0.6rem;
+    margin-top: 1.5rem;
+    opacity: 0.8;
   }
 
-  /* ── Sidebar buttons ── */
+  section[data-testid="stSidebar"] hr {
+    border-color: #e2e8f0;
+    margin: 1.5rem 0;
+  }
+
+  /* ── Sidebar Buttons (Premium Branded) ── */
   section[data-testid="stSidebar"] .stButton > button {
-    background-color: #4f46e5;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
     color: #ffffff;
     border: none;
-    border-radius: 8px;
+    border-radius: 14px;
     font-weight: 600;
-    font-size: 13px;
-    transition: background 0.2s;
+    font-size: 14px;
+    padding: 0.6rem 1rem;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+    width: 100%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
+  
   section[data-testid="stSidebar"] .stButton > button:hover {
-    background-color: #4338ca;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    filter: brightness(1.05);
   }
 
-  /* ── Hero banner ── */
+  /* ── Hero section (Modern Display) ── */
   .hero {
-    background: #ffffff;
-    border: 1px solid #e0e7ff;
-    border-left: 4px solid #4f46e5;
-    border-radius: 10px;
-    padding: 1rem 1.5rem;
-    margin-top: 0 !important;
-    margin-bottom: 1.2rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2.5rem;
     display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  .hero-title {
-    font-size: 1.35rem;
-    font-weight: 800;
-    color: #1e1b4b;
-    margin: 0;
-    line-height: 1.2;
-  }
-  .hero-sub {
-    font-size: 0.75rem;
-    color: #6b7280;
-    margin-top: 3px;
-  }
-  .hero-badge {
-    margin-left: auto;
-    background: #eef2ff;
-    border: 1px solid #c7d2fe;
-    color: #4f46e5;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    white-space: nowrap;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 
-  /* ── Source card ── */
-  .source-box {
-    background: #f9fafb;
-    border-left: 3px solid #6366f1;
-    border-radius: 6px;
-    padding: 10px 14px;
-    font-size: 12.5px;
-    margin: 6px 0;
-    color: #374151;
-    line-height: 1.6;
+  .hero-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
   }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: #64748b;
+    margin-top: 0.5rem;
+    font-weight: 500;
+    max-width: 600px;
+  }
+
+  .hero-badge {
+    background: linear-gradient(135deg, #e0e7ff 0%, #f1f5f9 100%);
+    border: 1px solid #c7d2fe;
+    color: #4338ca;
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 1rem;
+  }
+
+  /* ── Chat Messages (Soft UI Bubbles) ── */
+  div[data-testid="stChatMessage"] {
+    background: #ffffff !important;
+    border: 1px solid #f1f5f9 !important;
+    border-radius: 20px !important;
+    padding: 1.25rem 1.5rem !important;
+    margin-bottom: 1.25rem !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02) !important;
+  }
+  
+  div[data-testid="stChatMessage"] .stMarkdown p {
+    color: #334155 !important;
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+  }
+
+  /* User Message Distinction (Soft Brand Tint) */
+  div[data-testid="stChatMessage"][data-testid="user"] {
+    background: #f8faff !important;
+    border-color: #e0e7ff !important;
+  }
+
+  /* ── Metrics (Modern Stat Minimal) ── */
+  div[data-testid="metric-container"] {
+    background: #fbfcfe !important;
+    border: 1px solid #f1f5f9 !important;
+    border-radius: 16px !important;
+    padding: 1.25rem !important;
+    text-align: center !important;
+    transition: all 0.3s ease;
+  }
+  
+  div[data-testid="metric-container"]:hover {
+    transform: translateY(-3px);
+    border-color: #c7d2fe;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.03);
+  }
+
+  div[data-testid="metric-container"] label {
+    color: #94a3b8 !important;
+    font-size: 0.7rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  div[data-testid="metric-container"] div[data-testid="stMetricValue"] {
+    color: #0f172a !important;
+    font-size: 1.75rem !important;
+    font-weight: 800 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    margin-top: 0.25rem !important;
+  }
+
+  /* ── Source Cards (Floating Glass) ── */
+  .source-box {
+    background: #ffffff;
+    border: 1px solid #f1f5f9;
+    border-left: 6px solid #6366f1;
+    border-radius: 16px;
+    padding: 1.5rem;
+    font-size: 14px;
+    margin: 1rem 0;
+    color: #475569;
+    line-height: 1.8;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  }
+
   .source-meta {
     color: #6366f1;
-    font-size: 11.5px;
-    font-weight: 600;
-    margin-bottom: 4px;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
-  /* ── Metric cards ── */
-  div[data-testid="metric-container"] {
-    background: #f5f3ff;
-    border: 1px solid #e0e7ff;
-    border-radius: 8px;
-    padding: 8px;
+  /* ── Custom File Uploader ── */
+  div[data-testid="stFileUploadDropzone"] {
+    background: #fbfcfe !important;
+    border: 2px dashed #e2e8f0 !important;
+    border-radius: 20px !important;
+    padding: 3rem !important;
+    transition: all 0.3s ease;
   }
-  div[data-testid="metric-container"] label {
-    color: #6366f1 !important;
-    font-size: 11px !important;
+  
+  div[data-testid="stFileUploadDropzone"]:hover {
+    border-color: #6366f1 !important;
+    background: #ffffff !important;
   }
-  div[data-testid="metric-container"] div[data-testid="stMetricValue"] {
-    color: #1e1b4b !important;
-    font-size: 1.3rem !important;
+  
+  /* ── Chat Input ── */
+  div[data-testid="stChatInput"] {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 20px !important;
+    padding: 8px 12px !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.03) !important;
   }
 
-  /* ── Expander ── */
-  details summary {
-    font-size: 12.5px;
-    color: #6366f1;
-  }
-
-  /* ── Chat messages ── */
-  div[data-testid="stChatMessage"] {
-    background: #ffffff;
-    border: 1px solid #f0f0f5;
-    border-radius: 10px;
-    padding: 0.3rem 0.5rem;
-    margin-bottom: 0.4rem;
-  }
 </style>
 """, unsafe_allow_html=True)
 
@@ -178,11 +262,10 @@ if "doc_uploaded" not in st.session_state:
 # ── Sidebar ───────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown(
-        "<div style='text-align:center; padding:0.6rem 0 0.4rem;'>"
-        "<span style='font-size:1.8rem;'>📄</span>"
-        "<p style='color:#1e1b4b; font-weight:800; font-size:0.95rem; margin:4px 0 2px;'>"
-        "RAG Document Intelligence</p>"
-        "<p style='color:#9ca3af; font-size:0.7rem; margin:0;'>Upload · Ask · Cite</p>"
+        "<div style='text-align:left; padding:0.25rem 0.5rem;'>"
+        "<p style='color:#4338ca; font-family:\"Plus Jakarta Sans\", sans-serif; font-weight:800; font-size:1.4rem; margin:0; letter-spacing:-0.03em;'>"
+        "RAG IQ</p>"
+        "<p style='color:#64748b; font-size:0.85rem; font-weight:500; margin:4px 0 0;'>Intelligence Augmented</p>"
         "</div>",
         unsafe_allow_html=True,
     )
@@ -241,15 +324,15 @@ with st.sidebar:
     # ── How it works ──
     st.markdown("### 💡 How it works")
     st.markdown(
-        "<div style='color:#6b7280; font-size:12.5px; line-height:1.9;'>"
-        "① Upload a document<br>"
-        "② Ask questions in chat<br>"
-        "③ Get answers with citations"
+        "<div style='color:#475569; font-size:13px; font-weight:500; line-height:2.0; padding:0 0.5rem;'>"
+        "<span style='color:#6366f1; margin-right:8px;'>01</span> Upload documentation<br>"
+        "<span style='color:#6366f1; margin-right:8px;'>02</span> Query in natural language<br>"
+        "<span style='color:#6366f1; margin-right:8px;'>03</span> Receive a cited, AI-generated answer"
         "</div>"
-        "<div style='margin-top:10px; background:#f5f3ff; border:1px solid #e0e7ff;"
-        "border-radius:8px; padding:8px 12px; font-size:12px; color:#4f46e5;'>"
-        "🔍 <strong>Hybrid Search + HyDE</strong><br>"
-        "<span style='color:#9ca3af;'>Semantic similarity &amp; hypothetical document embeddings</span>"
+        "<div style='margin-top:1.5rem; background:#ffffff; border:1px solid #eef2ff;"
+        "border-radius:14px; padding:12px 16px; font-size:12px; color:#1e293b; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);'>"
+        "<strong style='color:#4338ca; font-family:\"Plus Jakarta Sans\", sans-serif;'>RAG ENGINE v1.0</strong><br>"
+        "<span style='color:#64748b; font-weight:500;'>Hybrid Search + HyDE Fusion</span>"
         "</div>",
         unsafe_allow_html=True,
     )
@@ -278,8 +361,9 @@ with st.sidebar:
         if h.status_code == 200:
             data = h.json()
             st.markdown(
-                "<div style='background:#f0fdf4; border:1px solid #bbf7d0; border-radius:6px;"
-                "padding:6px 10px; font-size:12.5px; color:#166534;'>🟢 Backend healthy</div>",
+                "<div style='background:#ffffff; border:1px solid #dcfce7; border-radius:10px;"
+                "padding:8px 12px; font-size:12px; font-weight:600; color:#166534; box-shadow: 0 2px 4px rgba(0,0,0,0.02);'>"
+                "<span style='color:#22c55e; margin-right:6px;'>●</span> System Operational</div>",
                 unsafe_allow_html=True,
             )
             if data.get("chroma_ready", False):
@@ -298,8 +382,9 @@ with st.sidebar:
             st.error("Backend error")
     except Exception:
         st.markdown(
-            "<div style='background:#fef2f2; border:1px solid #fecaca; border-radius:6px;"
-            "padding:6px 10px; font-size:12.5px; color:#991b1b;'>🔴 Cannot reach backend</div>",
+            "<div style='background:#ffffff; border:1px solid #fee2e2; border-radius:10px;"
+            "padding:8px 12px; font-size:12px; font-weight:600; color:#991b1b; box-shadow: 0 2px 4px rgba(0,0,0,0.02);'>"
+            "<span style='color:#ef4444; margin-right:6px;'>●</span> System Offline</div>",
             unsafe_allow_html=True,
         )
 
@@ -312,12 +397,9 @@ with st.sidebar:
 # ── Hero header ───────────────────────────────────────────────────────────
 st.markdown("""
 <div class="hero">
-  <span style="font-size:1.8rem;">📄</span>
-  <div>
-    <div class="hero-title">RAG Document Intelligence</div>
-    <div class="hero-sub">LLaMA 3.3 · Groq · LangGraph · ChromaDB · Hybrid Search + HyDE</div>
-  </div>
-  <div class="hero-badge">⚡ Powered by Groq</div>
+  <div class="hero-badge">Deep Retrieval Agent</div>
+  <div class="hero-title">RAG Document Intelligence</div>
+  <div class="hero-sub">Upload any documentation and query it with human-like reasoning. Powered by LLaMA 3.3 and Hybrid Search + HyDE.</div>
 </div>
 """, unsafe_allow_html=True)
 
