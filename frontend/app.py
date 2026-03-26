@@ -109,12 +109,13 @@ st.markdown("""
   /* ── Hero section ── */
   .hero {
     background: #ffffff;
-    border-bottom: 1px solid #e2e8f0;
-    padding: 0.6rem 0 0.8rem 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 0.75rem 1.25rem;
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    justify-content: space-between;
   }
 
   .hero-title {
@@ -384,10 +385,10 @@ with st.sidebar:
 st.markdown("""
 <div class="hero">
   <div>
-    <div class="hero-badge">Deep Retrieval Agent</div>
     <div class="hero-title">RAG Document Intelligence</div>
     <div class="hero-sub">Upload any document and query it with cited AI answers. Powered by LLaMA 3.3 · Hybrid Search + HyDE.</div>
   </div>
+  <div class="hero-badge">Deep Retrieval Agent</div>
 </div>
 """, unsafe_allow_html=True)
 
