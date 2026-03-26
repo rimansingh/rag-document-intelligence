@@ -36,40 +36,37 @@ st.markdown("""
     overflow: hidden !important;
   }
 
-  /* ── Global Styles (Modern Soft UI) ── */
+  /* ── Global Styles ── */
   .stApp {
-    background: #f8fafc; /* Soft Slate */
+    background: #f8fafc;
     font-family: 'Inter', sans-serif;
     color: #1e293b;
   }
 
   [data-testid="stAppViewContainer"] > section.main > div.block-container {
-    padding-top: 0 !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    background: #ffffff; /* Floating Content Card */
-    border-radius: 0 0 24px 24px;
-    margin-top: 0 !important;
-    margin-bottom: 2rem;
-    box-shadow: 
-      0 10px 15px -3px rgba(0, 0, 0, 0.04),
-      0 4px 6px -4px rgba(0, 0, 0, 0.02),
-      0 20px 25px -5px rgba(0, 0, 0, 0.03); /* Multi-layered soft shadow */
+    padding-top: 1.5rem !important;
+    padding-left: 2.5rem !important;
+    padding-right: 2.5rem !important;
+    max-width: 860px !important;
+    margin: 0 auto !important;
+    background: #ffffff;
+    border-radius: 16px;
+    margin-top: 1rem !important;
+    margin-bottom: 2rem !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     border: 1px solid rgba(226, 232, 240, 0.8);
   }
 
-  /* ── Sidebar (Glassmorphism Lite) ── */
+  /* ── Sidebar ── */
   section[data-testid="stSidebar"] {
-    background-color: #f0f4ff !important; /* Soft Indigo */
+    background-color: #f0f4ff !important;
     border-right: 1px solid #e2e8f0;
   }
-  
+
   section[data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
     padding-top: 0 !important;
   }
-  
+
   section[data-testid="stSidebar"] .stMarkdown h3 {
     color: #4338ca;
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -78,117 +75,100 @@ st.markdown("""
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 0.6rem;
-    margin-top: 1.5rem;
+    margin-top: 1.2rem;
     opacity: 0.8;
   }
 
   section[data-testid="stSidebar"] hr {
     border-color: #e2e8f0;
-    margin: 1.5rem 0;
+    margin: 1rem 0;
   }
 
-  /* ── Sidebar Buttons (Premium Branded) ── */
+  /* ── Sidebar Buttons ── */
   section[data-testid="stSidebar"] .stButton > button {
     background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
     color: #ffffff;
     border: none;
-    border-radius: 14px;
+    border-radius: 10px;
     font-weight: 600;
-    font-size: 14px;
-    padding: 0.6rem 1rem;
+    font-size: 13px;
+    padding: 0.5rem 1rem;
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
     width: 100%;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
   }
-  
+
   section[data-testid="stSidebar"] .stButton > button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
     filter: brightness(1.05);
   }
 
-  /* ── Hero section (Modern Display) ── */
+  /* ── Hero section ── */
   .hero {
-    padding-bottom: 2rem;
-    margin-bottom: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+    padding: 0.5rem 0 1.2rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #f1f5f9;
   }
 
   .hero-title {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 2.2rem;
+    font-size: 1.4rem;
     font-weight: 800;
     color: #0f172a;
-    margin: 0;
-    letter-spacing: -0.04em;
-    line-height: 1.1;
+    margin: 0 0 0.25rem 0;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
   }
 
   .hero-sub {
-    font-size: 1rem;
+    font-size: 0.82rem;
     color: #64748b;
-    margin-top: 0.5rem;
-    font-weight: 500;
-    max-width: 600px;
+    font-weight: 400;
+    margin: 0;
   }
 
   .hero-badge {
-    background: linear-gradient(135deg, #e0e7ff 0%, #f1f5f9 100%);
+    display: inline-block;
+    background: #eef2ff;
     border: 1px solid #c7d2fe;
     color: #4338ca;
-    padding: 6px 14px;
+    padding: 3px 10px;
     border-radius: 100px;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-top: 1rem;
+    margin-bottom: 0.5rem;
   }
 
-  /* ── Chat Messages (Soft UI Bubbles) ── */
+  /* ── Chat Messages ── */
   div[data-testid="stChatMessage"] {
     background: #ffffff !important;
     border: 1px solid #f1f5f9 !important;
-    border-radius: 20px !important;
-    padding: 1.25rem 1.5rem !important;
-    margin-bottom: 1.25rem !important;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02) !important;
+    border-radius: 14px !important;
+    padding: 0.9rem 1.1rem !important;
+    margin-bottom: 0.75rem !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03) !important;
   }
-  
+
   div[data-testid="stChatMessage"] .stMarkdown p {
     color: #334155 !important;
-    font-size: 15px !important;
-    line-height: 1.7 !important;
+    font-size: 14px !important;
+    line-height: 1.65 !important;
   }
 
-  /* User Message Distinction (Soft Brand Tint) */
-  div[data-testid="stChatMessage"][data-testid="user"] {
-    background: #f8faff !important;
-    border-color: #e0e7ff !important;
-  }
-
-  /* ── Metrics (Modern Stat Minimal) ── */
+  /* ── Metrics ── */
   div[data-testid="metric-container"] {
     background: #fbfcfe !important;
     border: 1px solid #f1f5f9 !important;
-    border-radius: 16px !important;
-    padding: 1.25rem !important;
+    border-radius: 12px !important;
+    padding: 0.9rem !important;
     text-align: center !important;
-    transition: all 0.3s ease;
-  }
-  
-  div[data-testid="metric-container"]:hover {
-    transform: translateY(-3px);
-    border-color: #c7d2fe;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.03);
   }
 
   div[data-testid="metric-container"] label {
     color: #94a3b8 !important;
-    font-size: 0.7rem !important;
+    font-size: 0.65rem !important;
     font-weight: 700 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.05em !important;
@@ -196,56 +176,55 @@ st.markdown("""
 
   div[data-testid="metric-container"] div[data-testid="stMetricValue"] {
     color: #0f172a !important;
-    font-size: 1.75rem !important;
+    font-size: 1.4rem !important;
     font-weight: 800 !important;
     font-family: 'Plus Jakarta Sans', sans-serif !important;
-    margin-top: 0.25rem !important;
   }
 
-  /* ── Source Cards (Floating Glass) ── */
+  /* ── Source Cards ── */
   .source-box {
-    background: #ffffff;
+    background: #fafafa;
     border: 1px solid #f1f5f9;
-    border-left: 6px solid #6366f1;
-    border-radius: 16px;
-    padding: 1.5rem;
-    font-size: 14px;
-    margin: 1rem 0;
+    border-left: 4px solid #6366f1;
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+    font-size: 13px;
+    margin: 0.6rem 0;
     color: #475569;
-    line-height: 1.8;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    line-height: 1.7;
   }
 
   .source-meta {
     color: #6366f1;
-    font-size: 12px;
-    font-weight: 800;
-    margin-bottom: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 6px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
-  /* ── Custom File Uploader ── */
+  /* ── File Uploader ── */
   div[data-testid="stFileUploadDropzone"] {
     background: #fbfcfe !important;
     border: 2px dashed #e2e8f0 !important;
-    border-radius: 20px !important;
-    padding: 3rem !important;
-    transition: all 0.3s ease;
+    border-radius: 12px !important;
+    transition: all 0.2s ease;
   }
-  
+
   div[data-testid="stFileUploadDropzone"]:hover {
     border-color: #6366f1 !important;
     background: #ffffff !important;
   }
-  
-  /* ── Chat Input ── */
-  div[data-testid="stChatInput"] {
-    background: #ffffff !important;
-    border: 1px solid #e2e8f0 !important;
-    border-radius: 20px !important;
-    padding: 8px 12px !important;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.03) !important;
+
+  /* ── Chat Input — fix overflow ── */
+  div[data-testid="stChatInput"] textarea {
+    font-size: 14px !important;
+    border-radius: 12px !important;
+  }
+
+  div[data-testid="stBottom"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
 </style>
@@ -399,7 +378,7 @@ st.markdown("""
 <div class="hero">
   <div class="hero-badge">Deep Retrieval Agent</div>
   <div class="hero-title">RAG Document Intelligence</div>
-  <div class="hero-sub">Upload any documentation and query it with human-like reasoning. Powered by LLaMA 3.3 and Hybrid Search + HyDE.</div>
+  <div class="hero-sub">Upload any document and query it with cited AI answers. Powered by LLaMA 3.3 · Hybrid Search + HyDE.</div>
 </div>
 """, unsafe_allow_html=True)
 
