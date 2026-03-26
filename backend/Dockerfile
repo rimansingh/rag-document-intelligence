@@ -23,7 +23,7 @@ COPY --from=builder /root/.local /home/appuser/.local
 
 COPY app/ ./app/
 
-RUN mkdir -p /app/chroma_db && chown -R appuser:appuser /app
+RUN mkdir -p /app/chroma_db /data/chroma_db && chown -R appuser:appuser /app /data
 
 USER appuser
 
