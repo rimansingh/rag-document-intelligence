@@ -43,16 +43,21 @@ st.markdown("""
     color: #1e293b;
   }
 
+  /* Remove Streamlit's default top gap */
+  [data-testid="stAppViewContainer"] > section.main {
+    padding-top: 0 !important;
+  }
+
   [data-testid="stAppViewContainer"] > section.main > div.block-container {
-    padding-top: 1.5rem !important;
+    padding-top: 0.5rem !important;
     padding-left: 2.5rem !important;
     padding-right: 2.5rem !important;
     max-width: 860px !important;
     margin: 0 auto !important;
     background: #ffffff;
     border-radius: 16px;
-    margin-top: 1rem !important;
-    margin-bottom: 2rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     border: 1px solid rgba(226, 232, 240, 0.8);
   }
@@ -105,8 +110,8 @@ st.markdown("""
 
   /* ── Hero section ── */
   .hero {
-    padding: 0.5rem 0 1.2rem 0;
-    margin-bottom: 1rem;
+    padding: 0.25rem 0 0.75rem 0;
+    margin-bottom: 0.75rem;
     border-bottom: 1px solid #f1f5f9;
   }
 
