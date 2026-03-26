@@ -49,17 +49,15 @@ st.markdown("""
   }
 
   [data-testid="stAppViewContainer"] > section.main > div.block-container {
-    padding-top: 0.5rem !important;
+    padding-top: 0 !important;
     padding-left: 2rem !important;
     padding-right: 2rem !important;
-    max-width: 1200px !important;
-    margin: 0 auto !important;
-    background: #ffffff;
-    border-radius: 16px;
-    margin-top: 0 !important;
-    margin-bottom: 1rem !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    border: 1px solid rgba(226, 232, 240, 0.8);
+    max-width: 100% !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
   }
 
   /* ── Sidebar ── */
@@ -110,9 +108,13 @@ st.markdown("""
 
   /* ── Hero section ── */
   .hero {
-    padding: 0.25rem 0 0.75rem 0;
-    margin-bottom: 0.75rem;
-    border-bottom: 1px solid #f1f5f9;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 0.6rem 0 0.8rem 0;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
   .hero-title {
@@ -381,9 +383,11 @@ with st.sidebar:
 # ── Hero header ───────────────────────────────────────────────────────────
 st.markdown("""
 <div class="hero">
-  <div class="hero-badge">Deep Retrieval Agent</div>
-  <div class="hero-title">RAG Document Intelligence</div>
-  <div class="hero-sub">Upload any document and query it with cited AI answers. Powered by LLaMA 3.3 · Hybrid Search + HyDE.</div>
+  <div>
+    <div class="hero-badge">Deep Retrieval Agent</div>
+    <div class="hero-title">RAG Document Intelligence</div>
+    <div class="hero-sub">Upload any document and query it with cited AI answers. Powered by LLaMA 3.3 · Hybrid Search + HyDE.</div>
+  </div>
 </div>
 """, unsafe_allow_html=True)
 
