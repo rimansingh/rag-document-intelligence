@@ -22,7 +22,7 @@ from app.models import (
 )
 from app.agent import run_rag
 from app.ingestion import ingest_document, SUPPORTED_TYPES
-from app.vectorstore import is_vectorstore_ready
+from app.vectorstore import is_vectorstore_ready, reset_vectorstore
 from app.database import save_query, get_metrics
 
 # ── Structured JSON logging ───────────────────────────────────────────────
