@@ -50,9 +50,9 @@ st.markdown("""
 
   [data-testid="stAppViewContainer"] > section.main > div.block-container {
     padding-top: 0.5rem !important;
-    padding-left: 2.5rem !important;
-    padding-right: 2.5rem !important;
-    max-width: 860px !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    max-width: 1200px !important;
     margin: 0 auto !important;
     background: #ffffff;
     border-radius: 16px;
